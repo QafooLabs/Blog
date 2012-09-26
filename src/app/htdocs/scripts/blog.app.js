@@ -11,8 +11,8 @@
         $( '#content' ).templating();
         $( window ).posts();
         $( '.navbar' ).markCurrent( {
-            "main":     "nav-home",
-            "create":   "nav-create"
+            "main":       "nav-home",
+            "createPost": "nav-create"
         } );
 
         // General content handling
@@ -89,7 +89,7 @@
      * @param Event event
      * @param Request request
      */
-    App.prototype.initCreate = function( event, request ) {
+    App.prototype.initCreatePost = function( event, request ) {
         $( '#content' ).trigger( 'updateContents', [{
             template: "post-create.mustache",
             success:  function() {

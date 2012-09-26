@@ -1,76 +1,31 @@
 <div class="span12">
-    <form class="well form-horizontal" id="watch-create">
+    <form class="well form-horizontal" id="post-create">
         <fieldset>
-            <legend>Neue Uhr anlegen</legend>
+            <legend>Create a new blog post</legend>
 
             <div class="control-group">
-                <label class="control-label" for="watch-number">Nummer</label>
+                <label class="control-label" for="post-title">Title</label>
                 <div class="controls">
-                    <input name="number" type="text" class="input" id="watch-number">
+                    <input name="title" type="text" class="input-xlarge" id="post-title" />
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="watch-material">Material</label>
+                <label class="control-label" for="post-abstract">Abstract</label>
                 <div class="controls">
-                    <input name="material" type="text" class="input" id="watch-material">
+                    <textarea name="abstract" type="text" class="input-xlarge" id="post-abstract"></textarea>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="watch-value">Wert</label>
+                <label class="control-label" for="post-text">Text</label>
                 <div class="controls">
-                    <input name="value" type="text" class="input" id="watch-value">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-features">Besonderheiten</label>
-                <div class="controls">
-                    <textarea name="features" class="input" id="watch-features"></textarea>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-hinged">Sprungdeckel</label>
-                <div class="controls">
-                    <label class="checkbox">
-                        <input name="hinged" id="watch-hinged" value="true" type="checkbox" />
-                        Taschenuhr ist klappbar.
-                    </label>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-gravure">Gravur</label>
-                <div class="controls">
-                    <textarea name="gravure" class="input" id="watch-gravure"></textarea>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-producer">Produzent</label>
-                <div class="controls">
-                    <input name="producer" type="text" class="input" id="watch-producer">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-precision">Genauigkeit</label>
-                <div class="controls">
-                    <input name="precision" type="text" class="input" id="watch-precision">
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="watch-build">Herstellungsdatum</label>
-                <div class="controls">
-                    <input name="build" type="text" class="input" id="watch-build">
+                    <textarea name="text" type="text" class="input-xlarge" id="post-text"></textarea>
                 </div>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Anlegen</button>
+                <button type="submit" class="btn btn-primary">Publish</button>
             </div>
         </fieldset>
     </form>
