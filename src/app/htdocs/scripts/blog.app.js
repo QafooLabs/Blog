@@ -67,7 +67,7 @@
      * @param Request request
      */
     App.prototype.initMain = function( event, request ) {
-        $( window ).dispatch( "listBlog", '#content', 'updateContents', function ( data ) {
+        $( window ).dispatch( "listPosts", '#content', 'updateContents', function ( data ) {
             return {
                 template: "post-list.mustache",
                 viewData: {
@@ -107,7 +107,7 @@
      * @param Request request
      */
     App.prototype.initView = function( event, request ) {
-        $( window ).dispatch( "showWatch", '#content', 'updateContents', function ( data ) {
+        $( window ).dispatch( "showPost", '#content', 'updateContents', function ( data ) {
             if ( data._attachments ) {
                 data._attachments = $.map( data._attachments, function( value, key ) {
                     value.name = key;

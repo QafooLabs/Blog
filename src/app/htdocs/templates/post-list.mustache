@@ -1,48 +1,13 @@
 <div class="span12">
-    <h1>Übersicht</h1>
+    <h1>Blog</h1>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Nummer</th>
-                <th>Material</th>
-                <th>Besonderheiten</th>
-                <th>Gravur</th>
-                <th>Sprungdeckel</th>
-                <th>Genauigkeit</th>
-                <th>Baujahr</th>
-                <th>Produzent</th>
-                <th>Wert</th>
-                <th>Aktionen</th>
-            </tr>
-        </thead>
-        <tbody>
-        {{#watches}}
-            <tr>
-                <td><a href="/watch/{{_id}}"><i class="icon-time"></i> {{number}}</a></td>
-                <td>{{material}}</td>
-                <td>{{features}}</td>
-                <td>{{gravure}}</td>
-                <td>{{#hinged}}x{{/hinged}}</td>
-                <td>{{precision}}</td>
-                <td>{{build}}</td>
-                <td>{{producer}}</td>
-                <td>{{value}} €</td>
-                <td>
-                    <div class="btn-group">
-                        <a href="/edit/{{_id}}" class="btn btn-mini">Editieren</a>
-                        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/watch/{{_id}}"><i class="icon-time"></i> Anschauen</a></li>
-                            <li><a href="/edit/{{_id}}"><i class="icon-edit"></i> Editieren</a></li>
-                            <li><a href="/delete/{{_id}}"><i class="icon-trash"></i> Löschen</a></li>
-                        </ul>
-                    </div> 
-                </td>
-            </tr>
-        {{/watches}}
-        </tbody>
-    </table>
+{{#posts}}
+    <h2>{{title}}</h2>
+    <p>{{abstract}}</p>
+{{/posts}}
+{{^posts}}
+    <div class="alert alert-info">
+        <p>No blog posts yet.</p>
+    </div>
+{{/posts}}
 </div>

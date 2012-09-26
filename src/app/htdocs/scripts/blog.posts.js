@@ -1,5 +1,5 @@
 /**
- * Watch handling
+ * Post handling
  *
  * Licensed under AGPL3
  */
@@ -13,7 +13,7 @@
             Lounge.utils.queryApi(
                 "/_design/app/_view/posts?include_docs=true",
                 function( posts, textStatus, request ) {
-                    $( e.target ).trigger( "listWatches", [posts] );
+                    $( e.target ).trigger( "listPosts", [posts] );
                 }
             );
         };
@@ -23,7 +23,7 @@
             Lounge.utils.queryApi(
                 "/" + data,
                 function( post, textStatus, request ) {
-                    $( e.target ).trigger( "showWatch", [post] );
+                    $( e.target ).trigger( "showPost", [post] );
                 }
             );
         };
