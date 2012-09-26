@@ -1,0 +1,80 @@
+<div class="span12">
+    <form class="well form-horizontal" id="watch-edit">
+        <fieldset>
+            <legend>Uhr editieren</legend>
+
+            <input name="_id" type="hidden" value="{{_id}}" />
+            <input name="_rev" type="hidden" value="{{_rev}}" />
+
+            <div class="control-group">
+                <label class="control-label" for="watch-number">Nummer</label>
+                <div class="controls">
+                    <input name="number" type="text" class="input" id="watch-number" value="{{number}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-material">Material</label>
+                <div class="controls">
+                    <input name="material" type="text" class="input" id="watch-material" value="{{material}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-value">Wert</label>
+                <div class="controls">
+                    <input name="value" type="text" class="input" id="watch-value" value="{{value}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-features">Besonderheiten</label>
+                <div class="controls">
+                    <textarea name="features" class="input" id="watch-features">{{features}}</textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-hinged">Sprungdeckel</label>
+                <div class="controls">
+                    <label class="checkbox">
+                        <input {{#hinged}}checked="checked"{{/hinged}} name="hinged" id="watch-hinged" value="true" type="checkbox" />
+                        Taschenuhr ist klappbar.
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-gravure">Gravur</label>
+                <div class="controls">
+                    <textarea name="gravure" class="input" id="watch-gravure">{{gravure}}</textarea>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-producer">Produzent</label>
+                <div class="controls">
+                    <input name="producer" type="text" class="input" id="watch-producer" value="{{producer}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-precision">Genauigkeit</label>
+                <div class="controls">
+                    <input name="precision" type="text" class="input" id="watch-precision" value="{{precision}}" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="watch-build">Herstellungsdatum</label>
+                <div class="controls">
+                    <input name="build" type="text" class="input" id="watch-build" value="{{build}}" />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

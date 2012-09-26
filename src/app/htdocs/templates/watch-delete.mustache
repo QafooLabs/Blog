@@ -1,0 +1,17 @@
+<div class="span12">
+    <div class="alert">
+        <h1>Uhr {{number}} löschen</h1>
+
+        <p><strong>Warnung:</strong> Das Löschen der Uhr ist permanent. Wirklich löschen?</p>
+
+        <form class="form-inline" id="watch-delete">
+            <fieldset>
+                <input name="_id" type="hidden" value="{{_id}}" />
+                <input name="_rev" type="hidden" value="{{_rev}}" />
+                
+                <button type="submit" class="btn btn-primary btn-danger">Löschen</button>
+                <a href="/" class="btn btn-default">Abbrechen</a>
+            </fieldset>
+        </form>
+    </div>
+</div>

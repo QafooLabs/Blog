@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Simple Blog CouchApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/styles/bootstrap.css" rel="stylesheet">
+    <link href="/styles/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/styles/app.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="brand" href="/">Simple Blog CouchApp</a>
+                            <div class="nav-collapse">
+                                <ul class="nav">
+                                    <li id="nav-home"><a href="/"><i class="icon-list icon-white"></i> Überblick</a></li>
+                                    <li id="nav-create"><a href="/create"><i class="icon-plus icon-white"></i> Neuer Post</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="row">
+            <div class="span12">
+                <div class="alert">
+                    <h1>Javascript required</h1>
+                    <p>This page requires JavaScript to work corrrectly. Please update your browser preferences accordingly.</p>
+                    <p>This might also occur in the seldom case an error happend somewhere &mdash; if this is the case we are very sorry for this.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/scripts/vendor/jquery/jquery-1.7.2.js"></script>
+    <!-- script type="text/javascript" src="/scripts/vendor/jquery/jquery-1.7.2.min.js"></script -->
+    <script type="text/javascript" src="/scripts/vendor/jquery/jquery.history.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/jquery/jquery.form.js"></script>
+
+    <script type="text/javascript" src="/scripts/vendor/bootstrap/bootstrap.js"></script>
+    <!-- script type="text/javascript" src="/scripts/vendor/bootstrap/bootstrap.min.js"></script -->
+
+    <script type="text/javascript" src="/scripts/vendor/mustache/mustache.js"></script>
+
+    <script type="text/javascript" src="/scripts/vendor/json2.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/parseUri.js"></script>
+
+    <script type="text/javascript" src="/scripts/vendor/lounge/lounge.dispatch.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/lounge/lounge.markCurrent.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/lounge/lounge.router.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/lounge/lounge.templating.js"></script>
+    <script type="text/javascript" src="/scripts/vendor/lounge/lounge.util.js"></script>
+
+    <script type="text/javascript" src="/scripts/blog.posts.js"></script>
+    <script type="text/javascript" src="/scripts/blog.app.js"></script>
+    <script type="text/javascript" src="/scripts/blog.js"></script>
+</body>
+</html>
