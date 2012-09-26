@@ -33,12 +33,12 @@
                     return;
                 }
 
-                console.log( "Dispatching event " + e.type + " to " + node + ":" + callback.target );
+                console.info( "Dispatching event " + e.type + " to " + node + ":" + callback.target );
                 $( node ).trigger( callback.target, convertedEventData );
             } );
 
             if ( stopPropagation = stopPropagation || false ) {
-                console.log( "Force-stopped event propagation." );
+                console.info( "Force-stopped event propagation." );
                 e.stopPropagation();
             }
             return !stopPropagation;
@@ -50,7 +50,7 @@
 
             if ( !routes[source] )
             {
-                console.log( "Bind " + source + " to " + node + ":" + target );
+                console.info( "Bind " + source + " to " + node + ":" + target );
                 $(this).bind( source + ".dispatcher", dispatchEvent );
                 routes[source] = [];
             }

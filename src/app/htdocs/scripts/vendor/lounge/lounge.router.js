@@ -26,7 +26,7 @@
 
             matches = url.path.match( route.regexp );
             if ( matches ) {
-                console.log( "Matched " + route.regexp + " as route:" + route.name );
+                console.info( "Matched " + route.regexp + " as route:" + route.name );
                 
                 if ( matches[1] ) {
                     url.params.match = matches[1];
