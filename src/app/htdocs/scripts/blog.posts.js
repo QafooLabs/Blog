@@ -45,7 +45,7 @@
                     edited:    now.getTime(),
                     title:     data.title,
                     abstract:  data.abstract,
-                    text:      data.material
+                    text:      data.text
                 };
 
             // Submit post to database
