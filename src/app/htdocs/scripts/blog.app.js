@@ -165,6 +165,10 @@
             }
         } );
 
+        $( window ).dispatch( "statusLoggedIn", window, 'postSetAuthor', function ( data ) {
+            return data.userCtx;
+        } );
+
         $( window ).trigger( "checkLogin" );
     };
 

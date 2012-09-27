@@ -6,12 +6,12 @@
 ;( function( $ ) {
     $.fn.posts = function()
     {
-        var list, load, create, update, remove, removeAttachment;
+        var list, load, create, setAuthor, user;
 
         list = function( e, data )
         {
             Lounge.utils.queryApi(
-                "/_design/app/_view/posts?include_docs=true",
+                "/_design/app/_view/posts?include_docs=true&descending=true",
                 function( posts, textStatus, request ) {
                     $( e.target ).trigger( "listPosts", [posts] );
                 }
@@ -41,6 +41,7 @@
             var now = new Date(),
                 post = {
                     type:      "post",
+                    author:    user,
                     edited:    now.getTime(),
                     title:     data.title,
                     abstract:  data.abstract,
@@ -58,11 +59,17 @@
             );
         };
 
+        setAuthor = function( e, data )
+        {
+            user = data.name;
+        };
+
         return this.each( function()
         {
             $(this).bind( "postList", list );
             $(this).bind( "postCreate", create );
             $(this).bind( "postLoad", load );
+            $(this).bind( "postSetAuthor", setAuthor );
         } );
     };
 }( jQuery ) );
