@@ -6,9 +6,10 @@
     
     <ul class="comments">
     {{#comments}}
-        <li>
+        <li style="margin-left: {{doc.margin}}px">
             <p>By {{doc.author}}</p>
             <p>{{doc.comment}}</p>
+            <p><a onclick="$( '#comment-parent' ).val( '{{doc.serializedPath}}' ); return true" href="#comment-create">Answer…</a></p>
         </li>
     {{/comments}}
     </ul>
@@ -21,6 +22,13 @@
                 <label class="control-label" for="comment-name">Name</label>
                 <div class="controls">
                     <input name="name" type="text" class="input-xlarge" id="comment-name" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="comment-parent">Answer to…</label>
+                <div class="controls">
+                    <input name="parent" type="text" class="input-xlarge" id="comment-parent" />
                 </div>
             </div>
 

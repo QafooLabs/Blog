@@ -33,6 +33,7 @@
             var now = new Date(),
                 comment = {
                     type:      "comment",
+                    path:      JSON.parse( data.parent ) || [],
                     post:      data.post,
                     edited:    now.getTime(),
                     comment:   data.comment,

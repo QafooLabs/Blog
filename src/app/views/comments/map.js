@@ -1,5 +1,7 @@
 function ( doc ) {
     if ( doc.type === "comment" ) {
-        emit( [doc.post, doc.edited], null );
+        var path = [doc.post].concat( doc.path );
+        path.push( doc._id );
+        emit( path, null );
     }
 }

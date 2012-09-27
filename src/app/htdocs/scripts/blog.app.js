@@ -117,6 +117,20 @@
      */
     App.prototype.initViewPost = function( event, request ) {
         $( window ).dispatch( "showPost", '#content', 'updateContents', function ( data ) {
+
+            data.comments = _.map(
+                data.comments,
+                function ( comment ) {
+                    comment.doc.path = comment.doc.path || [];
+                    comment.doc.path.push( comment.id );
+                    comment.doc.serializedPath = JSON.stringify( comment.doc.path );
+
+                    comment.doc.margin = ( comment.doc.path.length - 1 ) * 30;
+
+                    return comment;
+                }
+            );
+
             return {
                 template: "post-show.mustache",
                 viewData: data,
@@ -192,7 +206,7 @@ jQuery().ready(function() {
             {   name:   "createPost",
                 regexp: /^\/post\/create$/ },
             {   name:   "viewPost",
-                regexp: /^\/post\/([a-f0-9]+)$/ },
+                regexp: /^\/post\/([a-f0-9]+)(?:\/#.*)?$/ },
             {   name:   "user",
                 regexp: /^\/user$/ },
             {   name:   "404",
