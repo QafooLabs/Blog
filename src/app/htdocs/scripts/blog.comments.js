@@ -6,27 +6,7 @@
 ;( function( $ ) {
     $.fn.comments = function()
     {
-        var list, load, create, update, remove, removeAttachment;
-
-        list = function( e, data )
-        {
-            Lounge.utils.queryApi(
-                "/_design/app/_view/comments?include_docs=true",
-                function( comments, textStatus, request ) {
-                    $( e.target ).trigger( "listComments", [comments] );
-                }
-            );
-        };
-
-        load = function( e, data )
-        {
-            Lounge.utils.queryApi(
-                "/" + data,
-                function( comment, textStatus, request ) {
-                    $( e.target ).trigger( "showComment", [comment] );
-                }
-            );
-        };
+        var create;
 
         create = function( e, data )
         {
@@ -41,21 +21,26 @@
                 };
 
             // Submit comment to database
-            Lounge.utils.queryApi(
-                "/",
-                function( data, textStatus, request ) {
+            $.ajax( {
+                type: "POST",
+                url: "/api/",
+                success: function( comments, textStatus, request ) {
                     $( e.target ).trigger( "postUpdated" );
                 },
-                JSON.stringify( comment ),
-                "POST"
-            );
+                error: function( request, textStatus, error ) {
+                    var result = JSON.parse( request.responseText );
+                    alert( "Error: " + result.reason );
+                    throw( result );
+                },
+                dataType: "json",
+                data: JSON.stringify( comment ),
+                contentType: "application/json",
+            } );
         };
 
         return this.each( function()
         {
-            $(this).bind( "commentList", list );
             $(this).bind( "commentCreate", create );
-            $(this).bind( "commentLoad", load );
         } );
     };
 }( jQuery ) );
