@@ -2,8 +2,9 @@
     <h1>Blog</h1>
 
 {{#posts}}
-    <h2>{{title}}</h2>
+    <h2><a href="/post/{{_id}}">{{title}}</a></h2>
     <p>{{abstract}}</p>
+    <p><a href="/post/{{_id}}">Read more …</a>
 {{/posts}}
 {{^posts}}
     <div class="alert alert-info">

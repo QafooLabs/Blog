@@ -10,6 +10,7 @@
 
         $( '#content' ).templating();
         $( window ).posts();
+        $( window ).comments();
         $( '.navbar' ).markCurrent( {
             "main":       "nav-home",
             "createPost": "nav-create"
@@ -48,6 +49,10 @@
 
         // Show application initilization screen
         $( '#content' ).trigger( 'updateContents', [{template: 'initialize.mustache' }] );
+
+        $( window ).bind( "postUpdated", function() {
+            History.pushState( null, null, "/" );
+        } );
     };
 
     /**
@@ -71,7 +76,7 @@
             return {
                 template: "post-list.mustache",
                 viewData: {
-                    post: $.map( data.rows, function( value ) {
+                    posts: $.map( data.rows, function( value ) {
                         var post = value.doc;
                         post.formattedTime = Lounge.utils.formatTime( post.edited );
                         return post;
@@ -106,18 +111,16 @@
      * @param Event event
      * @param Request request
      */
-    App.prototype.initView = function( event, request ) {
+    App.prototype.initViewPost = function( event, request ) {
         $( window ).dispatch( "showPost", '#content', 'updateContents', function ( data ) {
-            if ( data._attachments ) {
-                data._attachments = $.map( data._attachments, function( value, key ) {
-                    value.name = key;
-                    return value;
-                } );
-            }
-
             return {
                 template: "post-show.mustache",
-                viewData: data
+                viewData: data,
+                success:  function() {
+                    $( "#comment-create" ).dispatch( "submit", window, "commentCreate", function () {
+                        return Lounge.utils.formToObject( "#comment-create" );
+                    }, null, true );
+                }
             }
         } );
 
@@ -144,7 +147,7 @@ jQuery().ready(function() {
             {   name:   "createPost",
                 regexp: /^\/post\/create$/ },
             {   name:   "viewPost",
-                regexp: /^\/post\/(.*)$/ },
+                regexp: /^\/post\/([a-f0-9]+)$/ },
             {   name:   "404",
                 regexp: /./ }
     ] );

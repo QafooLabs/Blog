@@ -23,7 +23,15 @@
             Lounge.utils.queryApi(
                 "/" + data,
                 function( post, textStatus, request ) {
-                    $( e.target ).trigger( "showPost", [post] );
+                    Lounge.utils.queryApi(
+                        "/_design/app/_view/comments?" + 
+                            encodeURI( "startkey=[\"" + data + "\"]" ) + "&" +
+                            encodeURI( "endkey=[\"" + data + "\",{}]" ) + "&" +
+                            "include_docs=true",
+                        function( comments, textStatus, request ) {
+                            $( e.target ).trigger( "showPost", [{post: post, comments: comments.rows}] );
+                        }
+                    );
                 }
             );
         };
@@ -34,15 +42,9 @@
                 post = {
                     type:      "post",
                     edited:    now.getTime(),
-                    number:    parseInt( data.number, 10 ),
-                    value:     parseInt( data.value, 10 ),
-                    material:  data.material,
-                    features:  data.features,
-                    gravure:   data.gravure,
-                    hinged:    data.hinged ? true : false,
-                    precision: data.precision,
-                    producer:  data.producer,
-                    build:     parseInt( data.build, 10 )
+                    title:     data.title,
+                    abstract:  data.abstract,
+                    text:      data.material
                 };
 
             // Submit post to database
@@ -56,69 +58,11 @@
             );
         };
 
-        update = function( e, data )
-        {
-            var now = new Date(),
-                post = {
-                    type:         "post",
-                    edited:       now.getTime(),
-                    _rev:         data._rev,
-                    _attachments: data._attachments,
-                    number:       parseInt( data.number, 10 ),
-                    value:        parseInt( data.value, 10 ),
-                    material:     data.material,
-                    features:     data.features,
-                    gravure:      data.gravure,
-                    hinged:       data.hinged ? true : false,
-                    precision:    data.precision,
-                    producer:     data.producer,
-                    build:        parseInt( data.build, 10 )
-                };
-
-            // Submit post to database
-            Lounge.utils.queryApi(
-                "/" + data._id,
-                function( data, textStatus, request ) {
-                    $( e.target ).trigger( "postUpdated" );
-                },
-                JSON.stringify( post ),
-                "PUT"
-            );
-        };
-
-        remove = function( e, data )
-        {
-            Lounge.utils.queryApi(
-                "/" + data._id + "?rev=" + data._rev,
-                function( data, textStatus, request ) {
-                    $( e.target ).trigger( "postUpdated" );
-                },
-                null,
-                "DELETE"
-            );
-        };
-
-        removeAttachment = function( e, data )
-        {
-            var id = data.substr( 0, data.indexOf( "/" ) );
-            Lounge.utils.queryApi(
-                "/" + data,
-                function( data, textStatus, request ) {
-                    $( e.target ).trigger( "postLoad", [id] );
-                },
-                null,
-                "DELETE"
-            );
-        };
-
         return this.each( function()
         {
             $(this).bind( "postList", list );
             $(this).bind( "postCreate", create );
             $(this).bind( "postLoad", load );
-            $(this).bind( "postUpdate", update );
-            $(this).bind( "postDelete", remove );
-            $(this).bind( "postRemoveAttachment", removeAttachment );
         } );
     };
 }( jQuery ) );
