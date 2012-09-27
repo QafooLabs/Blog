@@ -14,6 +14,7 @@
      * @param string data
      * @param string method
      * @param string contentType
+     * @param function error
      */
     utils.query = function( url, callback, data, method, contentType, error )
     {
@@ -22,7 +23,7 @@
         var contentType = contentType || "application/json";
         var error = error || function( request, textStatus, error ) {
             var result = JSON.parse( request.responseText );
-            alert( "Error: " + ( result.reason || result.message ) );
+            alert( "Error: " + result.reason );
             throw( result );
         };
 
@@ -47,10 +48,12 @@
      * @param function callback
      * @param string data
      * @param string method
+     * @param string contentType
+     * @param function error
      */
-    utils.queryApi = function( url, callback, data, method )
+    utils.queryApi = function( url, callback, data, method, contentType, error )
     {
-        utils.query( "/api" + url, callback, data, method, "application/json" );
+        utils.query( "/api" + url, callback, data, method, contentType || "application/json", error );
     }
 
     /**
