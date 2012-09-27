@@ -11,8 +11,8 @@
         list = function( e, data )
         {
             $.ajax( {
-                type: "GET",
-                url: "/api/_design/app/_view/posts?include_docs=true&descending=true",
+                type: null, // @TODO: Add
+                url: null, // @TODO: Add
                 success: function( posts, textStatus, request ) {
                     $( e.target ).trigger( "listPosts", [posts] );
                 },
@@ -30,26 +30,10 @@
         load = function( e, data )
         {
             $.ajax( {
-                type: "GET",
-                url: "/api/" + data,
+                type: null, // @TODO: Add
+                url: null, // @TODO: Add
                 success: function( post, textStatus, request ) {
-                    $.ajax( {
-                        type: "GET",
-                        url: "/api/_design/app/_view/comments?" +
-                            encodeURI( "startkey=[\"" + data + "\"]" ) + "&" +
-                            encodeURI( "endkey=[\"" + data + "\",{}]" ) + "&" +
-                            "include_docs=true",
-                        success: function( comments, textStatus, request ) {
-                            $( e.target ).trigger( "showPost", [{post: post, comments: comments.rows}] );
-                        },
-                        error: function( request, textStatus, error ) {
-                            var result = JSON.parse( request.responseText );
-                            alert( "Error: " + result.reason );
-                            throw( result );
-                        },
-                        dataType: "json",
-                        contentType: "application/json",
-                    } );
+                    $( e.target ).trigger( "showPost", [{post: post}] );
                 },
                 error: function( request, textStatus, error ) {
                     var result = JSON.parse( request.responseText );
@@ -75,8 +59,8 @@
 
             // Submit post to database
             $.ajax( {
-                type: "POST",
-                url: "/api/",
+                type: null, // @TODO: Add
+                url: null, // @TODO: Add
                 success: function( comments, textStatus, request ) {
                     $( e.target ).trigger( "postUpdated" );
                 },

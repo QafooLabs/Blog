@@ -22,8 +22,8 @@
 
             // Submit comment to database
             $.ajax( {
-                type: "POST",
-                url: "/api/",
+                type: null, // @TODO: Add!
+                url: null, // @TODO: Add!
                 success: function( comments, textStatus, request ) {
                     $( e.target ).trigger( "postUpdated" );
                 },
