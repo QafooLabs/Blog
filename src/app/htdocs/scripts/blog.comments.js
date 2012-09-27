@@ -43,7 +43,7 @@
             Lounge.utils.queryApi(
                 "/",
                 function( data, textStatus, request ) {
-                    $( e.target ).trigger( "commentUpdated" );
+                    $( e.target ).trigger( "postUpdated" );
                 },
                 JSON.stringify( comment ),
                 "POST"
