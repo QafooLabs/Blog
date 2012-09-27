@@ -11,9 +11,11 @@
         $( '#content' ).templating();
         $( window ).posts();
         $( window ).comments();
+        $( window ).user();
         $( '.navbar' ).markCurrent( {
             "main":       "nav-home",
-            "createPost": "nav-create"
+            "createPost": "nav-create",
+            "user":       "nav-user"
         } );
 
         // General content handling
@@ -30,6 +32,8 @@
         $( window ).bind( "route:main", app.initMain );
         $( window ).bind( "route:createPost", app.initCreatePost );
         $( window ).bind( "route:viewPost", app.initViewPost );
+
+        $( window ).bind( "route:user", app.initViewLogin );
     };
 
     /**
@@ -66,7 +70,7 @@
     };
 
     /**
-     * Initialize main tweet view of application
+     * Initialize main blog posts view of application
      *
      * @param Event event
      * @param Request request
@@ -106,7 +110,7 @@
     };
 
     /**
-     * Initialize accounts view of the application
+     * Initialize blog post view of the application
      *
      * @param Event event
      * @param Request request
@@ -125,6 +129,43 @@
         } );
 
         $( window ).trigger( "postLoad", [request.url.params.match] );
+    };
+
+    /**
+     * Initialize user login / register view of the application
+     *
+     * @param Event event
+     * @param Request request
+     */
+    App.prototype.initViewLogin = function( event, request ) {
+        $( window ).dispatch( "statusLoggedOut", '#content', 'updateContents', function ( data ) {
+            return {
+                template: 'login.mustache',
+                viewData: data.userCtx,
+                success:  function() {
+                    $( "#login" ).dispatch( "submit", window, "login", function ( data ) {
+                        return Lounge.utils.formToObject( "#login" );
+                    }, null, true );
+
+                    $( "#register" ).dispatch( "submit", window, "register", function ( data ) {
+                        return Lounge.utils.formToObject( "#register" );
+                    }, null, true );
+                }
+            }
+        } );
+
+        $( window ).dispatch( "statusLoggedIn", '#content', 'updateContents', function ( data ) {
+            return {
+                template: 'logout.mustache',
+                viewData: data.userCtx,
+                success:  function() {
+                    $( "#userLogout" ).unbind( "click" );
+                    $( "#userLogout" ).dispatch( "click", window, "logout", null, null, true );
+                }
+            }
+        } );
+
+        $( window ).trigger( "checkLogin" );
     };
 
     // Exports
@@ -148,6 +189,8 @@ jQuery().ready(function() {
                 regexp: /^\/post\/create$/ },
             {   name:   "viewPost",
                 regexp: /^\/post\/([a-f0-9]+)$/ },
+            {   name:   "user",
+                regexp: /^\/user$/ },
             {   name:   "404",
                 regexp: /./ }
     ] );
