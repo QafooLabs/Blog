@@ -13,7 +13,9 @@ The following lines are required in ``/etc/couchdb/local.ini``::
 
 Then you can request the uploaded website at: http://blog:5984/
 
-Also add the host ``blog`` to the ``/etc/hosts`` file.
+Also add the host ``blog`` to the ``/etc/hosts`` file::
+    
+    127.0.0.1   blog
 
 Pushing the app
 ===============
